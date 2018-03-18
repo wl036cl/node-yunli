@@ -1,3 +1,9 @@
+# Config and useless Files
+config/
+node_modules/
+logs/
+.idea/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
