@@ -4,12 +4,12 @@
  * Descripttion:
  */
 exports.dataSuccess = {
-    code: '200',//200+正确
-    msg: '成功',
-    data: {}
+  code: '200',//200+正确
+  msg: '成功',
+  data: {}
 };
 
 exports.dataError = {
-    code: '100',//100+错误
-    msg: '参数错误'
+  code: '100',//100+错误
+  msg: '参数错误'
 };

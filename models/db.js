@@ -5,35 +5,35 @@
  */
 //1.引入配置文件
 const config = require('../config/mysql.config'),
-    mysql = require('mysql'),
-    log = require('../utils/log');
+  mysql = require('mysql'),
+  log = require('../utils/log');
 
 function executeSql(sql) {
-    return new Promise(function (resolve, reject) {
-        const connection = mysql.createConnection(config);
+  return new Promise(function (resolve, reject) {
+    const connection = mysql.createConnection(config);
 
-        connection.connect(err => {
-            if (err) {
-                log.error('建立连接失败：' + JSON.stringify(err));
-                reject('建立连接失败：' + JSON.stringify(err));
-            }
-        });
-        connection.query(sql, (err, rows) => {
-            if (err) {
-                log.error('执行SQL失败(' + sql + ')：' + JSON.stringify(err));
-                reject('执行SQL失败：' + JSON.stringify(err));
-            } else {
-                log.success('执行SQL成功！' + sql + '=>result：' + JSON.stringify(rows));
-                resolve(JSON.stringify(rows));//转成string类型，解决错误，ERROR： First argument must be a string or Buffer
-            }
-        });
-        connection.end(function (err) {
-            if (err) {
-                log.error('关闭连接失败：' + JSON.stringify(err));
-                reject('关闭连接失败：' + JSON.stringify(err));
-            }
-        });
+    connection.connect(err => {
+      if (err) {
+        log.error('建立连接失败：' + JSON.stringify(err));
+        reject('建立连接失败：' + JSON.stringify(err));
+      }
     });
+    connection.query(sql, (err, rows) => {
+      if (err) {
+        log.error('执行SQL失败(' + sql + ')：' + JSON.stringify(err));
+        reject('执行SQL失败：' + JSON.stringify(err));
+      } else {
+        log.success('执行SQL成功！' + sql + '=>result：' + JSON.stringify(rows));
+        resolve(JSON.stringify(rows));//转成string类型，解决错误，ERROR： First argument must be a string or Buffer
+      }
+    });
+    connection.end(function (err) {
+      if (err) {
+        log.error('关闭连接失败：' + JSON.stringify(err));
+        reject('关闭连接失败：' + JSON.stringify(err));
+      }
+    });
+  });
 }
 
 // function executeSql(sql,callback) {
