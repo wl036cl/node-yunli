@@ -62,6 +62,7 @@ exports.getClientIp = function (req) {
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
 };
+
 exports.getRandStringEx = function (length) {
   length = Number(length) || 0;
   length = length > 64 ? 64 : length;
